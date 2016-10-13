@@ -212,7 +212,7 @@ def print_menu(exits, room_items, inv_items):
     # COMPLETE ME!
     #
     
-    print("What do you want to do?")
+    print("What do you want to do? Type the words in capital letter: ")
 
 
 def is_valid_exit(exits, chosen_exit):
@@ -259,16 +259,29 @@ def execute_take(item_id):
     there is no such item in the room, this function prints
     "You cannot take that."
     """
-    item
-    print("You cannot take that")
-    pass
+    for item in current_room["items"]:
+        if item["id"] == item_id:
+            current_room["items"].remove(item)
+            inventory.append(item)
+            return
+    print("You can't take that")
     
+        
+    
+
 
 def execute_drop(item_id):
     """This function takes an item_id as an argument and moves this item from the
     player's inventory to list of items in the current room. However, if there is
     no such item in the inventory, this function prints "You cannot drop that."
     """
+    for item in inventory:
+        if item["id"] == item_id:
+            inventory.remove(item)
+            current_room["items"].append(item)
+            return
+    print("You can't drop that")
+        
 
     
 
@@ -321,9 +334,9 @@ def menu(exits, room_items, inv_items):
     user_input = input("> ")
 
     # Normalise the input
-    normalised_user_input = normalise_input(user_input)
+    user_input = normalise_input(user_input)
 
-    return normalised_user_input
+    return user_input
 
 
 def move(exits, direction):
