@@ -30,8 +30,6 @@ def list_of_items(items):
 
     comma_list =", ".join(item_list)
     return comma_list
-    pass
-
 
 def print_room_items(room):
     """This function takes a room as an input and nicely displays a list of items
@@ -74,8 +72,9 @@ def print_inventory_items(items):
 
     """
     inventory_pick = list_of_items(items)
-    print("You have", inventory_pick + ".")
-    print("")
+    if inventory_pick != "":
+        print("You have", inventory_pick + ".")
+        print("")
 
 
 def print_room(room):
@@ -203,6 +202,11 @@ def print_menu(exits, room_items, inv_items):
     for direction in exits:
         # Print the exit name and where it leads to
         print_exit(direction, exit_leads_to(exits, direction))
+    for items in inv_items:
+        print("DROP", items["id"].upper(), "to drop your", items["name"].lower()+ ".")
+
+    for items in room_items:
+        print("TAKE", items["id"].upper(), "to take", items["name"].lower() + ".")
 
     #
     # COMPLETE ME!
@@ -240,6 +244,12 @@ def execute_go(direction):
     (and prints the name of the room into which the player is
     moving). Otherwise, it prints "You cannot go there."
     """
+    global current_room
+    if is_valid_exit(current_room['exits'], direction) == True:
+        current_room = rooms[current_room['exits'][direction]]
+    else:
+        print("You cannot go there!")
+
     pass
 
 
@@ -249,6 +259,8 @@ def execute_take(item_id):
     there is no such item in the room, this function prints
     "You cannot take that."
     """
+    item
+    print("You cannot take that")
     pass
     
 
@@ -257,7 +269,7 @@ def execute_drop(item_id):
     player's inventory to list of items in the current room. However, if there is
     no such item in the inventory, this function prints "You cannot drop that."
     """
-    pass
+
     
 
 def execute_command(command):
