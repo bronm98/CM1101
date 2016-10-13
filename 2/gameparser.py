@@ -1,5 +1,5 @@
 import string
-
+from game2 import *
 # List of "unimportant" words (feel free to add more)
 skip_words = ['a', 'about', 'all', 'an', 'another', 'any', 'around', 'at',
               'bad', 'beautiful', 'been', 'better', 'big', 'can', 'every', 'for',
@@ -27,6 +27,11 @@ def filter_words(words, skip_words):
     ['go', 'passage', 'south']
 
     """
+    words = user_input.split()
+    resultwords = [word for word in qords if word.lower() not in skipwords]
+    result =''.join(resultwords)
+    print(result)
+    
     pass
 
     
@@ -49,6 +54,25 @@ def remove_punct(text):
             no_punct = no_punct + char
 
     return no_punct
+def remove_spaces(text):
+    """This function is used to remove leading and trailing spaces from a string.
+    It takes a string and returns a new string with does not have leading and
+    trailing spaces. For example:
+
+    >>> remove_spaces("  Hello!  ")
+    'Hello!'
+    >>> remove_spaces("  Python  is  easy!   ")
+    'Python  is  easy!'
+    >>> remove_spaces("Python is easy!")
+    'Python is easy!'
+    >>> remove_spaces("")
+    ''
+    >>> remove_spaces("   ")
+    ''
+    """
+    no_spaces = text.strip()
+    return no_spaces
+    pass
 
 
 def normalise_input(user_input):
@@ -78,6 +102,10 @@ def normalise_input(user_input):
     """
     # Remove punctuation and convert to lower case
     no_punct = remove_punct(user_input).lower()
+    spaces_removed = remove_spaces(user_input)
+    punc_removed = remove_punct(spaces_removed)
+    punc_removed = punc_removed.strip().lower()
+    return filter_words(punc_removed)
 
     #
     # COMPLETE ME!
