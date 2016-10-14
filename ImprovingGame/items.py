@@ -49,12 +49,3 @@ item_handbook = {
 
     "description": "This student handbook explains everything. Seriously."
 }
-items = {
-    "ID": item_id,
-    "Laptop": item_laptop,
-    "Money": item_money,
-    "Biscuits": item_biscuits,
-    "Pen": item_pen,
-    "Handbook": item_handbook
-}
-
