@@ -233,8 +233,8 @@ def is_valid_exit(exits, chosen_exit):
     """
     return chosen_exit in exits
 
-def remove_spaces(text):
-    no_spaces = text.strip()
+def remove_spaces(user_input):
+    no_spaces = user_input.strip()
     return no_spaces
 
 
