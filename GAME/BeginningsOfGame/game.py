@@ -20,7 +20,7 @@ def remove_punct(text):
     """
     stripped_text = ("")
     for c in text:
-        if c in "!,.@&*^-_%$£?":
+        if c in '!,.@&*[]+=-()^-_"%$£?':
             c = ""
         stripped_text += c
     return (stripped_text)
@@ -28,7 +28,7 @@ def remove_punct(text):
     
     
     
-def remove_spaces(text):
+def remove_spaces(user_input):
     """This function is used to remove leading and trailing spaces from a string.
     It takes a string and returns a new string with does not have leading and
     trailing spaces. For example:
@@ -44,9 +44,8 @@ def remove_spaces(text):
     >>> remove_spaces("   ")
     ''
     """
-    no_spaces = text.strip()
+    no_spaces = user_input.strip()
     return no_spaces
-    pass
 
 
 def normalise_input(user_input):
@@ -188,7 +187,8 @@ def menu(exits):
     while True:
         print_menu(exits)
         user_input = input("> ")
-        normalised_user_input = normalise_input(user_input)
+        no_space = remove_spaces(user_input)
+        normalised_user_input = normalise_input(no_space)
         return normalised_user_input
         
         # COMPLETE THIS PART:
